@@ -52,6 +52,8 @@ func buildEncoder(cfg Config) zapcore.Encoder {
 	}
 
 	encCfg = ecszap.ECSCompatibleEncoderConfig(encCfg)
+	encCfg.EncodeTime = zapcore.RFC3339NanoTimeEncoder
+	encCfg.TimeKey = "zap-nano-timestamp"
 	return encCreator(encCfg)
 }
 
