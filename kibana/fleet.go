@@ -454,6 +454,7 @@ func (client *Client) UpgradeAgent(ctx context.Context, request UpgradeAgentRequ
 	}
 
 	apiURL := fmt.Sprintf(fleetUpgradeAgentAPI, request.ID)
+	fmt.Printf("==================== Fleet Request ====================\n%s\nBody:\n", apiURL, string(reqBody))
 	resp, err := client.Connection.SendWithContext(ctx, http.MethodPost, apiURL, nil, nil, bytes.NewReader(reqBody))
 	if err != nil {
 		return r, fmt.Errorf("error calling upgrade agent API: %w", err)
